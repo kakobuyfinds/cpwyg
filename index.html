@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#182d40">
+  <title>RizzitGO spreadsheet: categorias, tamanhos e guia de QC</title>
+  <meta name="description" content="Explore RizzitGO spreadsheet em português: categorias de moda, medidas, fotos de QC e critérios para comparar produtos antes de avançar para o catálogo.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:title" content="RizzitGO spreadsheet — escolha com mais contexto">
+  <meta property="og:description" content="Um guia independente em português para organizar referências de moda, comparar medidas e interpretar fotos de QC.">
+  <meta name="twitter:card" content="summary">
+  <!-- index.html. Inserir canonical e og:url apenas após conhecer o URL de publicação. -->
+  <!-- Pesquisa editorial: a página de resultados do Bing não ficou acessível; não se confirma um top 10 do Bing.
+  Referências temáticas encontradas por pesquisa web alternativa, sem reprodução de textos ou adoção de alegações comerciais:
+  rep.tools/guides/rizzitgo-spreadsheet — ligações de origem e comparação;
+  sheetrizzitgo.com/rizzitgo-spreadsheet — linhas, medidas e referências QC;
+  www.rizzitgo.com/how-it-work — etapas de compra;
+  docs.rizzitgo.com/guide/en — listas de produtos;
+  rizzitgo-spreadsheets.com — pesquisa por categoria;
+  linktr.ee/rizzitgo — apresentação da plataforma;
+  www.rizzitgo.info — descoberta e organização;
+  rizzitgo.life — categorias de moda e perguntas;
+  rizzitgo.world/real-rizzitgo-spreadsheet-examples — organização de registos;
+  cnfanssheet.com/rizzitgo-spreadsheet — preparação e análise de QC.
+  Termos secundários: RizzitGO finds; RizzitGO QC; guia RizzitGO; RizzitGO Portugal.
+  Intenções de cauda longa desenvolvidas no conteúdo: como usar RizzitGO spreadsheet; organizar uma lista de produtos;
+  encontrar sapatilhas por modelo; comparar cores de sapatilhas; escolher o tamanho de sapatilhas;
+  comparar palmilhas em centímetros; medidas de hoodies; escolher sweatshirts por corte;
+  gramagem de t-shirts; comparar comprimento de t-shirts; medidas de casacos;
+  escolher calças pela cintura; comparar comprimento de calções; tamanho de bonés;
+  medidas de conjuntos; composição de roupa interior; escolher camisolas desportivas;
+  comparar acessórios de moda; verificar ligações de produtos; registar a data de consulta;
+  interpretar fotos de QC; pedir fotografias de detalhes; comparar costuras;
+  verificar a variante encomendada; calcular o custo total; comparar moedas;
+  estimar portes para Portugal; confirmar entrega para o Brasil; organizar referências Taobao;
+  comparar anúncios Weidian; guardar referências 1688; verificar condições de devolução.
+  -->
+  <link rel="preconnect" href="https://static.nike.com" crossorigin>
+  <style>
+    :root{
+      --ink:#182d40;
+      --paper:#f6f3eb;
+      --white:#fff;
+      --muted:#52606a;
+      --line:#d8ddd9;
+      --accent:#f0c34c;
+      --soft:#e9eee9;
+      --r:18px
+    }
+    *{box-sizing:border-box}
+    html{color-scheme:light}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+    }
+    a{color:inherit;text-underline-offset:4px}
+    a:focus-visible,summary:focus-visible{
+      outline:3px solid #9d6800;
+      outline-offset:5px
+    }
+    img{display:block;max-width:100%;height:auto}
+    h1,h2,h3,p,figure{margin:0}
+    h1,h2,h3{line-height:1.12;text-wrap:balance}
+    h1{
+      font-size:clamp(2.7rem,6vw,5.2rem);
+      letter-spacing:-.055em;
+      font-weight:750
+    }
+    h2{
+      font-size:clamp(1.8rem,3vw,2.8rem);
+      letter-spacing:-.035em
+    }
+    h3{font-size:1.22rem;line-height:1.3}
+    p+p{margin-top:1rem}
+    .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+    .top{background:var(--ink);color:var(--paper)}
+    .bar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      min-height:82px
+    }
+    .brand{
+      font-weight:800;
+      font-size:1.2rem;
+      letter-spacing:-.035em;
+      text-decoration:none
+    }
+    .bar span{
+      font-size:.78rem;
+      letter-spacing:.11em;
+      text-transform:uppercase
+    }
+    .categories{
+      padding:24px 0 28px;
+      border-bottom:1px solid var(--line)
+    }
+    .label{
+      display:block;
+      font-size:.75rem;
+      font-weight:750;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:14px
+    }
+    .cat-grid{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:8px
+    }
+    .cat-grid a{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:8px;
+      text-decoration:none;
+      font-size:.85rem;
+      font-weight:650
+    }
+    .cat-grid a:hover{
+      background:var(--accent);
+      border-color:var(--accent)
+    }
+    .cat-grid small{
+      font-size:.65rem;
+      color:var(--muted);
+      font-variant-numeric:tabular-nums
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      gap:48px;
+      align-items:center;
+      padding:58px 0 68px
+    }
+    .hero .label{color:#655018}
+    .hero .intro{
+      font-size:1.12rem;
+      color:var(--muted);
+      margin:24px 0
+    }
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+      min-height:48px;
+      padding:12px 22px;
+      background:var(--ink);
+      color:var(--white);
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700
+    }
+    .button:hover{background:#304b63}
+    .note{font-size:.82rem;color:var(--muted);margin-top:14px}
+    .hero-photo{
+      position:relative;
+      background:#e7e8e4;
+      border-radius:var(--r);
+      overflow:hidden
+    }
+    .hero-photo img{
+      width:100%;
+      aspect-ratio:1;
+      object-fit:contain
+    }
+    .hero-photo figcaption{
+      padding:16px 20px;
+      background:var(--white);
+      font-size:.82rem
+    }
+    .stamp{
+      position:absolute;
+      top:16px;
+      left:16px;
+      background:var(--accent);
+      border-radius:50%;
+      width:76px;
+      height:76px;
+      display:grid;
+      place-content:center;
+      text-align:center;
+      font-size:.67rem;
+      font-weight:800;
+      line-height:1.3;
+      letter-spacing:.06em
+    }
+    .answer{
+      display:grid;
+      grid-template-columns:240px 1fr;
+      gap:40px;
+      padding:32px;
+      background:var(--ink);
+      color:var(--paper);
+      border-radius:var(--r)
+    }
+    .answer h2{font-size:1.6rem}
+    .answer p{max-width:76ch}
+    .section{
+      padding:66px 0;
+      border-bottom:1px solid var(--line)
+    }
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:30px;
+      align-items:end;
+      margin-bottom:30px
+    }
+    .section-head p{max-width:43ch;color:var(--muted)}
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      list-style:none;
+      padding:0;
+      margin:30px 0 0;
+      counter-reset:step
+    }
+    .steps li{
+      counter-increment:step;
+      padding:26px;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:var(--r)
+    }
+    .steps li:before{
+      content:"0" counter(step);
+      display:block;
+      font-size:2.1rem;
+      line-height:1;
+      margin-bottom:24px;
+      color:#677d88
+    }
+    .steps p{color:var(--muted);margin-top:12px}
+    .table-scroll{
+      overflow-x:auto;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--white)
+    }
+    table{border-collapse:collapse;width:100%;font-size:.92rem}
+    caption{text-align:left;padding:18px;font-weight:700}
+    th,td{
+      text-align:left;
+      vertical-align:top;
+      padding:15px 18px;
+      border-top:1px solid var(--line)
+    }
+    thead{background:var(--soft)}
+    th{font-weight:700}
+    td:first-child{font-weight:650;width:23%}
+    .editorial{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:36px
+    }
+    .article{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      overflow:hidden
+    }
+    .article img{
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:contain;
+      background:#e9e9e7
+    }
+    .article figcaption{
+      font-size:.76rem;
+      color:var(--muted);
+      padding:10px 24px;
+      border-bottom:1px solid var(--line)
+    }
+    .article-body{padding:28px}
+    .article-body h3{font-size:1.5rem;margin:8px 0 18px}
+    .article-body p{color:var(--muted)}
+    .article-body ul{padding-left:20px;margin-bottom:0}
+    .article-body li+li{margin-top:8px}
+    .check{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:44px
+    }
+    .check p{color:var(--muted);margin-top:20px}
+    .check ul{margin:0;padding-left:22px}
+    .check li{padding:0 0 14px 8px}
+    .formula{
+      background:var(--soft);
+      padding:18px;
+      border-radius:10px;
+      margin-top:22px;
+      font-size:.95rem;
+      font-weight:650
+    }
+    .faq{max-width:850px}
+    details{border-bottom:1px solid var(--line);padding:20px 0}
+    summary{
+      cursor:pointer;
+      font-size:1.06rem;
+      font-weight:700;
+      line-height:1.5
+    }
+    details p{
+      color:var(--muted);
+      padding-top:12px;
+      max-width:75ch
+    }
+    .end{
+      margin:48px 0;
+      background:var(--accent);
+      padding:36px;
+      border-radius:var(--r);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:30px
+    }
+    .end h2{font-size:1.8rem}
+    .end p{margin-top:10px}
+    footer{padding:0 0 36px;font-size:.82rem;color:var(--muted)}
+    footer p{max-width:95ch}
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:25px;
+      margin-bottom:16px
+    }
+    .footer-row a{font-weight:700;color:var(--ink)}
+    @media(max-width:850px){
+      .cat-grid{grid-template-columns:repeat(3,1fr)}
+      .hero{gap:26px}
+      .answer{grid-template-columns:1fr;gap:18px}
+      .steps{gap:12px}
+      .steps li{padding:20px}
+      .section-head{display:block}
+      .section-head p{margin-top:18px}
+      .check{grid-template-columns:1fr;gap:24px}
+    }
+    @media(max-width:600px){
+      .wrap{width:calc(100% - 28px)}
+      .bar{min-height:70px}
+      .bar span{font-size:.63rem;max-width:105px;text-align:right}
+      .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .cat-grid a{padding:10px;font-size:.79rem;gap:7px;min-height:44px}
+      .hero{grid-template-columns:1fr;padding:36px 0;gap:28px}
+      .hero-photo{max-width:420px;width:100%;margin:auto}
+      .hero-photo img{aspect-ratio:4/3}
+      .answer{padding:25px}
+      .section{padding:42px 0}
+      .steps,.editorial{grid-template-columns:1fr}
+      .steps li:before{font-size:1.5rem;margin-bottom:15px}
+      .end{display:block;padding:25px}
+      .end .button{margin-top:22px}
+      .footer-row{flex-direction:column;gap:8px}
+      th,td{padding:12px;font-size:.84rem}
+      td:first-child{width:28%}
+    }
+    @media(prefers-reduced-motion:no-preference){
+      a{transition:background-color .15s ease}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebPage",
+        "name":"RizzitGO spreadsheet: categorias, tamanhos e guia de QC",
+        "description":"Guia independente em português para organizar referências de moda, comparar medidas e interpretar fotos de QC.",
+        "inLanguage":"pt",
+        "about":{"@type":"Thing","name":"RizzitGO spreadsheet"}
+      },
+      {
+        "@type":"Article",
+        "headline":"Sapatilhas e roupa: comparar medidas antes do estilo",
+        "inLanguage":"pt",
+        "author":{
+          "@type":"Organization",
+          "name":"hipobuyfind.com — guia editorial independente"
+        },
+        "articleBody":"Para escolher o tamanho de sapatilhas, compare a tabela do anúncio com as medidas dos seus pés e confirme se a medida indicada é do pé ou da palmilha. Na roupa, compare peito, ombros e comprimento com uma peça que já usa. A gramagem de uma t-shirt não confirma, por si só, a qualidade. Registe a variante e a data de consulta."
+      },
+      {
+        "@type":"Article",
+        "headline":"Acessórios: observar escala, materiais e acabamentos",
+        "inLanguage":"pt",
+        "author":{
+          "@type":"Organization",
+          "name":"hipobuyfind.com — guia editorial independente"
+        },
+        "articleBody":"No tamanho de bonés, confirme a circunferência e o ajuste. Num cachecol, verifique composição e dimensões. Em pulseiras, colares e anéis, confirme medidas e material declarado. Fotografias de QC permitem observar detalhes visíveis, mas não certificam autenticidade nem composição."
+      },
+      {
+        "@type":"FAQPage",
+        "inLanguage":"pt",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"O que é uma RizzitGO spreadsheet?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"É uma lista organizada de referências de produtos para pesquisa de compras relacionadas com RizzitGO. Pode reunir nomes, categorias, ligações e notas. Cada anúncio deve ser confirmado no destino; uma linha da lista não garante stock, preço ou qualidade."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Esta página é oficial ou processa encomendas?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Não. É um guia editorial independente, sem afiliação oficial declarada com RizzitGO ou com as marcas apresentadas. Esta página não recebe pagamentos nem processa encomendas; as ligações conduzem ao catálogo hipobuyfind.com ou às categorias indicadas."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Como interpretar fotos de QC?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Compare a variante, a cor, as costuras e os detalhes visíveis com o anúncio. Se faltar uma vista importante, peça fotografias de detalhes. QC significa controlo de qualidade; as imagens não certificam autenticidade, composição ou durabilidade."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Como escolher o tamanho sem experimentar?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Use a tabela específica do anúncio e compare medidas em centímetros com uma peça que já lhe serve. Em sapatilhas, distinga comprimento do pé e comprimento da palmilha. Se a informação for ambígua, confirme antes de pagar."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Os links abrem diretamente no RizzitGO?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Não. Nesta página, os botões gerais abrem https://www.hipobuyfind.com e os dez atalhos de categoria abrem as respetivas páginas em hipobuyfind.com. Confirme o destino e o produto antes de continuar."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"O que confirmar para Portugal ou para o Brasil?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Confirme no serviço escolhido se existe entrega para o seu destino, quais os artigos aceites, a moeda, os portes e os encargos aplicáveis. As condições dependem da encomenda e da rota; este guia não promete prazos nem valores."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/cpwyg/">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href="https://www.hipobuyfind.com" aria-label="Abrir hipobuyfind.com">hipobuyfind.com</a>
+      <span>Moda · pesquisa · contexto</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="categories" aria-label="Categorias de produtos">
+      <span class="label">Comece pela categoria</span>
+      <div class="cat-grid">
+        <a href="https://hipobuyfind.com/category-911-Shoes.html"><small>01</small> Shoes <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html"><small>02</small> Hoodies/Sweaters</a>
+        <a href="https://hipobuyfind.com/category-913-T-Shirts.html"><small>03</small> T-Shirts</a>
+        <a href="https://hipobuyfind.com/category-914-Jackets.html"><small>04</small> Jackets</a>
+        <a href="https://hipobuyfind.com/category-915-Pants%2FShorts.html"><small>05</small> Pants/Shorts</a>
+        <a href="https://hipobuyfind.com/category-916-Headwear.html"><small>06</small> Headwear</a>
+        <a href="https://hipobuyfind.com/category-917-Sets.html"><small>07</small> Sets</a>
+        <a href="https://hipobuyfind.com/category-918-underwear%2Funderpants.html"><small>08</small> Underwear/underpants</a>
+        <a href="https://hipobuyfind.com/category-919-Jersey.html"><small>09</small> Jersey</a>
+        <a href="https://hipobuyfind.com/category-920-Accessories.html"><small>10</small> Accessories</a>
+      </div>
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <span class="label">O seu caderno de pesquisa de moda</span>
+        <h1 id="hero-title">RizzitGO spreadsheet.<br>Do estilo<br>ao detalhe.</h1>
+        <p class="intro">Uma boa escolha começa com referências claras. Explore categorias, compare medidas e saiba o que observar nas fotografias antes de decidir.</p>
+        <a class="button" href="https://www.hipobuyfind.com">Explorar o catálogo <span aria-hidden="true">↗</span></a>
+        <p class="note">Guia independente em português. O botão abre hipobuyfind.com.</p>
+      </div>
+      <figure class="hero-photo">
+        <span class="stamp" aria-hidden="true">OLHAR<br>COMPARAR<br>ESCOLHER</span>
+        <img
+          src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b7d9211c-26e7-431a-ac24-b0540fb3c00f/AIR+FORCE+1+%2707.png"
+          alt="Sapatilhas Nike Air Force 1 ’07 na cor branca"
+          width="535"
+          height="535"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async">
+        <figcaption>Nike Air Force 1 ’07 · referência visual de modelo, sem indicação de oferta ou disponibilidade.</figcaption>
+      </figure>
+    </section>
+
+    <section class="answer" aria-labelledby="answer-title">
+      <h2 id="answer-title">O que está<br>numa spreadsheet?</h2>
+      <p>Uma <strong>RizzitGO spreadsheet</strong> organiza referências de produtos em linhas ou num catálogo visual. Nome, categoria, ligação e notas ajudam a preparar uma seleção. Use-a como ponto de partida: confirme sempre o anúncio, a variante e as condições no destino. Aqui encontra orientação editorial e atalhos para hipobuyfind.com.</p>
+    </section>
+
+    <section class="section" aria-labelledby="workflow-title">
+      <div class="section-head">
+        <div>
+          <span class="label">Guia RizzitGO · método de pesquisa</span>
+          <h2 id="workflow-title">Menos separadores.<br>Mais critérios.</h2>
+        </div>
+        <p>Como usar RizzitGO spreadsheet de forma organizada: transforme uma imagem interessante numa referência que consegue voltar a verificar.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>Defina o que procura</h3>
+          <p>Para encontrar sapatilhas por modelo, comece pelo nome e acrescente cor e tamanho. Nos RizzitGO finds de roupa, escolha primeiro a categoria e o corte que pretende.</p>
+        </li>
+        <li>
+          <h3>Compare dados equivalentes</h3>
+          <p>Verificar ligações de produtos evita comparar anúncios diferentes. Guarde modelo, variante, vendedor e medidas; registar a data de consulta ajuda a reconhecer informação antiga.</p>
+        </li>
+        <li>
+          <h3>Decida com o anúncio aberto</h3>
+          <p>Confirme a variante encomendada, a disponibilidade e as condições de devolução. Um título semelhante ou uma imagem igual não demonstram que dois anúncios oferecem o mesmo artigo.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="category-guide-title">
+      <div class="section-head">
+        <div>
+          <span class="label">Referência rápida</span>
+          <h2 id="category-guide-title">O detalhe muda<br>com a categoria.</h2>
+        </div>
+        <p>Antes de escolher, identifique a informação que realmente permite comparar cada tipo de peça.</p>
+      </div>
+      <div class="table-scroll" role="region" aria-label="Critérios de comparação por categoria" tabindex="0">
+        <table>
+          <caption>O que verificar no anúncio</caption>
+          <thead>
+            <tr>
+              <th scope="col">Categoria</th>
+              <th scope="col">Medida ou informação útil</th>
+              <th scope="col">Pergunta prática</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Sapatilhas</th>
+              <td>Tabela do modelo, comprimento do pé e palmilha em centímetros.</td>
+              <td>A tabela mede o pé ou o interior do sapato?</td>
+            </tr>
+            <tr>
+              <th scope="row">Hoodies e sweatshirts</th>
+              <td>Peito, ombros, comprimento e medidas de hoodies.</td>
+              <td>Quero escolher sweatshirts por corte justo ou amplo?</td>
+            </tr>
+            <tr>
+              <th scope="row">T-shirts</th>
+              <td>Largura, comprimento e composição; gramagem, quando declarada.</td>
+              <td>Consigo comparar o comprimento de t-shirts com uma que já uso?</td>
+            </tr>
+            <tr>
+              <th scope="row">Casacos</th>
+              <td>Medidas de casacos, mangas, forro e espaço para uma camada interior.</td>
+              <td>As medidas correspondem à peça fechada?</td>
+            </tr>
+            <tr>
+              <th scope="row">Calças e calções</th>
+              <td>Cintura, anca, entreperna e comprimento.</td>
+              <td>A cintura é elástica? O comprimento dos calções inclui o cós?</td>
+            </tr>
+            <tr>
+              <th scope="row">Bonés e conjuntos</th>
+              <td>Circunferência do boné; medidas de conjuntos para cada peça.</td>
+              <td>O ajuste está indicado? As duas peças têm tabelas próprias?</td>
+            </tr>
+            <tr>
+              <th scope="row">Roupa interior</th>
+              <td>Composição de roupa interior, cintura e condições de devolução.</td>
+              <td>Que restrições de devolução se aplicam a este artigo?</td>
+            </tr>
+            <tr>
+              <th scope="row">Camisolas desportivas</th>
+              <td>Peito, comprimento, material e personalização.</td>
+              <td>A impressão e a variante estão claramente identificadas?</td>
+            </tr>
+            <tr>
+              <th scope="row">Acessórios</th>
+              <td>Dimensões, material declarado, fecho e peso, quando disponível.</td>
+              <td>A fotografia permite perceber a escala real?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="reading-title">
+      <div class="section-head">
+        <div>
+          <span class="label">Duas leituras para escolher melhor</span>
+          <h2 id="reading-title">Forma, proporção<br>e acabamento.</h2>
+        </div>
+        <p>Imagens de marcas como referências visuais. Não representam produtos verificados no catálogo de destino.</p>
+      </div>
+
+      <div class="editorial">
+        <article class="article" aria-labelledby="size-title">
+          <figure>
+            <img
+              src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1749748538/839035_3GAMQ_1468_001_100_0000_Light-gg-wool-scarf.jpg"
+              alt="Cachecol Gucci em lã com padrão GG"
+              width="490"
+              height="490"
+              loading="lazy"
+              decoding="async">
+            <figcaption>Gucci · cachecol GG em lã, imagem de referência.</figcaption>
+          </figure>
+          <div class="article-body">
+            <span class="label">Artigo 01 · tamanho e corte</span>
+            <h3 id="size-title">Sapatilhas e roupa: comparar medidas antes do estilo</h3>
+            <p>Para escolher o tamanho de sapatilhas, compare a tabela do anúncio com as medidas dos seus pés. Ao comparar palmilhas em centímetros, confirme se o número se refere ao interior do sapato: essa medida não é automaticamente igual ao comprimento do pé.</p>
+            <p>Na roupa, uma etiqueta S ou M explica pouco sem uma tabela. Compare peito, ombros e comprimento com uma peça que já usa. A gramagem de uma t-shirt não confirma, por si só, a qualidade; composição, construção e acabamento também merecem atenção.</p>
+            <ul>
+              <li>Ao comparar cores de sapatilhas, tenha em conta a iluminação das fotografias.</li>
+              <li>Para escolher calças pela cintura, verifique se a medida é plana ou de circunferência.</li>
+              <li>Guarde a variante e a data de consulta junto das medidas.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="article" aria-labelledby="accessory-title">
+          <figure>
+            <img
+              src="https://sg.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton--M5381Y_PM2_Front%20view.jpg?wid=490&amp;hei=490"
+              alt="Boné Louis Vuitton Monogram Essential, vista frontal"
+              width="490"
+              height="490"
+              loading="lazy"
+              decoding="async">
+            <figcaption>Louis Vuitton · boné Monogram Essential, imagem de referência.</figcaption>
+          </figure>
+          <div class="article-body">
+            <span class="label">Artigo 02 · detalhes e materiais</span>
+            <h3 id="accessory-title">Acessórios: observar escala, materiais e acabamentos</h3>
+            <p>Comparar acessórios de moda exige olhar para além do padrão. No tamanho de bonés, confirme a circunferência e o ajuste. Num cachecol, verifique composição e dimensões. Em pulseiras, colares e anéis, confirme medidas e material declarado.</p>
+            <p>As fotografias de QC permitem observar detalhes visíveis, mas não certificam autenticidade nem composição. Se faltarem informações sobre um fecho, uma costura ou o interior de uma peça, peça fotografias de detalhes e esclarecimentos antes de decidir.</p>
+            <ul>
+              <li>Procure fotografias com uma referência de escala.</li>
+              <li>Compare costuras e simetria em vistas equivalentes.</li>
+              <li>Não deduza materiais apenas pela cor ou pelo brilho.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section check" aria-labelledby="check-title">
+      <div>
+        <span class="label">RizzitGO QC · lista de verificação</span>
+        <h2 id="check-title">Antes de avançar,<br>feche as dúvidas.</h2>
+        <p>Organizar referências Taobao, comparar anúncios Weidian ou guardar referências 1688 exige a mesma disciplina: preservar a ligação original e registar o que ainda falta confirmar.</p>
+        <div class="formula">Custo total = artigo + serviços + transporte + encargos aplicáveis.</div>
+      </div>
+      <ul>
+        <li><strong>Identidade da peça.</strong> Confirme modelo, cor, tamanho e quantidade. Compare a variante encomendada com a informação disponível.</li>
+        <li><strong>Fotos de QC.</strong> Ao interpretar fotos de QC, observe o artigo completo e depois os detalhes. Uma imagem de referência de outra encomenda não mostra necessariamente a sua peça.</li>
+        <li><strong>Moeda e custo.</strong> Para calcular o custo total e comparar moedas, use valores atuais e identifique as parcelas ainda desconhecidas. O preço de uma lista não equivale ao total entregue.</li>
+        <li><strong>Destino e transporte.</strong> Numa pesquisa RizzitGO Portugal, estimar portes para Portugal depende do volume, peso e rota. Para confirmar entrega para o Brasil, consulte as opções do serviço escolhido e os encargos aplicáveis ao destino.</li>
+        <li><strong>Condições de devolução.</strong> Verifique prazos, exclusões e procedimento antes de pagar. Guarde as respostas relativas ao anúncio e à variante selecionada.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <span class="label">Respostas diretas</span>
+      <h2 id="faq-title">Perguntas frequentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>O que é uma RizzitGO spreadsheet?</summary>
+          <p>É uma lista organizada de referências de produtos para pesquisa de compras relacionadas com RizzitGO. Pode reunir nomes, categorias, ligações e notas. Cada anúncio deve ser confirmado no destino; uma linha da lista não garante stock, preço ou qualidade.</p>
+        </details>
+        <details>
+          <summary>Esta página é oficial ou processa encomendas?</summary>
+          <p>Não. É um guia editorial independente, sem afiliação oficial declarada com RizzitGO ou com as marcas apresentadas. Esta página não recebe pagamentos nem processa encomendas; as ligações conduzem ao catálogo hipobuyfind.com ou às categorias indicadas.</p>
+        </details>
+        <details>
+          <summary>Como interpretar fotos de QC?</summary>
+          <p>Compare a variante, a cor, as costuras e os detalhes visíveis com o anúncio. Se faltar uma vista importante, peça fotografias de detalhes. QC significa controlo de qualidade; as imagens não certificam autenticidade, composição ou durabilidade.</p>
+        </details>
+        <details>
+          <summary>Como escolher o tamanho sem experimentar?</summary>
+          <p>Use a tabela específica do anúncio e compare medidas em centímetros com uma peça que já lhe serve. Em sapatilhas, distinga comprimento do pé e comprimento da palmilha. Se a informação for ambígua, confirme antes de pagar.</p>
+        </details>
+        <details>
+          <summary>Os links abrem diretamente no RizzitGO?</summary>
+          <p>Não. Nesta página, os botões gerais abrem https://www.hipobuyfind.com e os dez atalhos de categoria abrem as respetivas páginas em hipobuyfind.com. Confirme o destino e o produto antes de continuar.</p>
+        </details>
+        <details>
+          <summary>O que confirmar para Portugal ou para o Brasil?</summary>
+          <p>Confirme no serviço escolhido se existe entrega para o seu destino, quais os artigos aceites, a moeda, os portes e os encargos aplicáveis. As condições dependem da encomenda e da rota; este guia não promete prazos nem valores.</p>
+        </details>
+      </div>
+    </section>
+
+    <aside class="end" aria-label="Continuar a pesquisa">
+      <div>
+        <h2>Da inspiração à sua seleção.</h2>
+        <p>Explore o catálogo com medidas, materiais e destino em mente.</p>
+      </div>
+      <a class="button" href="https://www.hipobuyfind.com">Abrir hipobuyfind.com <span aria-hidden="true">↗</span></a>
+    </aside>
+  </main>
+
+  <footer class="wrap">
+    <div class="footer-row">
+      <a href="https://www.hipobuyfind.com">hipobuyfind.com</a>
+      <span>Guia editorial independente · Português</span>
+    </div>
+    <p>RizzitGO e as marcas mencionadas pertencem aos respetivos titulares. As imagens ilustram modelos e detalhes; não comprovam autenticidade, disponibilidade ou correspondência com anúncios no destino. Não se declara parceria oficial com RizzitGO, Nike, Gucci ou Louis Vuitton.</p>
+  </footer>
+</body>
+</html>
